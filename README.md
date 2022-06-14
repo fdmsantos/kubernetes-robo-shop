@@ -1,12 +1,19 @@
 # Robo Shop
 Repo for Kubernetes/AWS Training
 
-## Kubectl Configuration
+## Deploy
 
 ```bash
+cd cluster
+# Deploy EKS cluster
+terraform init
+AWS_PROFILE=outscope-tests terraform apply
+# Configure Kubectl
 aws eks update-kubeconfig --region eu-west-1 --name robo-shop-cluster --profile outscope-tests
-
 kubectl apply -f https://s3.us-west-2.amazonaws.com/amazon-eks/docs/eks-console-full-access.yaml
+# Deploy Flux Components (GitOps)
+kubectl apply -f gotk-components.yaml
+kubectl apply -f gotk-sync.yaml
 ```
 
 ## Troubleshooting
