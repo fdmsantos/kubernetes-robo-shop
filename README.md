@@ -4,7 +4,7 @@ Repo for Kubernetes/AWS Training
 ## Deploy
 
 ```bash
-cd cluster
+cd clusters
 # Deploy EKS cluster
 terraform init
 AWS_PROFILE=outscope-tests terraform apply --auto-approve
@@ -15,7 +15,7 @@ kubectl apply -f https://s3.us-west-2.amazonaws.com/amazon-eks/docs/eks-console-
 kubectl apply -f flux-system/gotk-components.yaml
 kubectl apply -f flux-system/gotk-sync.yaml
 # Deploy Robot Shop
-kubectl apply -f production/infrastructure.yaml
+kubectl apply -f production/infrastructure.yaml # Não é preciso
 ```
 
 ## Troubleshooting
