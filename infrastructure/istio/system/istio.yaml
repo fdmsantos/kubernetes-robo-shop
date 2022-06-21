@@ -24,7 +24,7 @@ spec:
     crds: CreateReplace
   chart:
     spec:
-      version: "${istio-version}"
+      version: "${istio_version}"
       chart: base
       sourceRef:
         kind: HelmRepository
@@ -44,7 +44,7 @@ spec:
     - name: istio-base
   chart:
     spec:
-      version: "${istio-version}"
+      version: "${istio_version}"
       chart: istiod
       sourceRef:
         kind: HelmRepository
@@ -79,7 +79,7 @@ spec:
     - name: istiod
   chart:
     spec:
-      version: "${istio-version}"
+      version: "${istio_version}"
       chart: gateway
       sourceRef:
         kind: HelmRepository

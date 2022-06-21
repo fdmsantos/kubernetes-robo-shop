@@ -6,4 +6,4 @@ metadata:
   annotations:
     kustomize.toolkit.fluxcd.io/ssa: merge
 data:
-  istio-version: 1.14.1
+  istio_version: 1.14.1
