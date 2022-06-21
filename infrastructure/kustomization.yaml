@@ -6,3 +6,4 @@ resources:
   - rabbitmq
   - mongodb
   - mysql
+  - istio

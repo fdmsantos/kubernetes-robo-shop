@@ -27,6 +27,13 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
 * Look for Kubernetes Patterns and implement
 * Observability
 * Data Analytics
+  * Redshift
+    * Several Users different access
+  * Glue
+  * EMR
+    * Several users different access, kerberos....
+    * Create image with packer
+  * Kinesis
 * Create Robot Automobile -> With Camera to read Traffic Velocity Signals, and change the velocity
 * Robo Sensors => Temperature => Usar Data Analytics Techniques (Kinesis Data Streams, Kinesis Analytics with Randow Cut Fores Algo to find broken Sensors)
 * Enable PSP => Pod Security Policy
@@ -61,8 +68,10 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
   * Client to Site
   * Transit Gateway
   * Give Access to Rabbit MQ Management Portal
-* Apply HPA to deployments
+* Scaling
+  * HPA to deployments
   * Auto Scaling based in custom Metrics (Dispatch service based in rabbitmq messages)
+  * Knative
 * Move Cluster Nodes to private subnets
 * Observability
   * SLOS, SLAS, SLI
@@ -71,14 +80,23 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
   * Grafana
 * Monitoring
 * DevOps Pipelines
-
+* Service Mesh
+  * Istio, Envoy
+    * Tracing
+    * Encryption
+    * Flagger
+      * https://ruzickap.github.io/k8s-flagger-istio-flux/
+      * https://github.com/stefanprodan/gitops-istio/blob/main/istio/system/flagger.yaml
+  * AWs App Mesh
+  * Traffic Mirroring
+  * Canary Deployments vs blue green in istio
+    * https://fluxcd.io/flagger/tutorials/istio-progressive-delivery/
+* Chaos Engineering
 ## Study
 
 * cert manager controller, secrets
-* istio, Linkerd, consul, AWS App Mesh
-* Envoy
 * AWS DevOps Guru
-* Knative, Calico
+* Calico
 * Admission controllers
 * Admission webhooks
 * Initializers

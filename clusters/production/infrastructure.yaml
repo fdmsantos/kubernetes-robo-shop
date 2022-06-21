@@ -10,3 +10,7 @@ spec:
     name: flux-system
   path: ./infrastructure
   prune: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: flux-infra-variables
