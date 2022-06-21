@@ -20,7 +20,7 @@ spec:
       containers:
         - name: payment
           image: robotshop/rs-payment:latest
-          imagePullPolicy:IfNotPresent
+          imagePullPolicy: IfNotPresent
           # agent networking access
           env:
 #            - name: INSTANA_AGENT_HOST
