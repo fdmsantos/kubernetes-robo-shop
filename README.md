@@ -26,7 +26,6 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
 
 * Look for Kubernetes Patterns and implement
 * Observability
-* WAF, Cloudfront
 * Data Analytics
 * Create Robot Automobile -> With Camera to read Traffic Velocity Signals, and change the velocity
 * Robo Sensors => Temperature => Usar Data Analytics Techniques (Kinesis Data Streams, Kinesis Analytics with Randow Cut Fores Algo to find broken Sensors)
@@ -36,6 +35,13 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
 * Sentiment Analysis in Robo Comments
 * Robo Recommend system based in Country?
 * Pen testing
+* Monitoring
+  * Logs
+  * ElasticSearch
+* Web Deployment
+  * WAF (via ACK)
+  * Cloudfront (Via ACK)
+  * Change service to Loadbalancer type
 * Redis 
   * is SatefulSet
   * Create Several Replicas and Replicate?
@@ -56,8 +62,16 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
   * Transit Gateway
   * Give Access to Rabbit MQ Management Portal
 * Apply HPA to deployments
+  * Auto Scaling based in custom Metrics (Dispatch service based in rabbitmq messages)
 * Move Cluster Nodes to private subnets
-* 
+* Observability
+  * SLOS, SLAS, SLI
+  * Tracing (XRAY?)
+  * Prometheus???
+  * Grafana
+* Monitoring
+* DevOps Pipelines
+
 ## Study
 
 * cert manager controller, secrets
