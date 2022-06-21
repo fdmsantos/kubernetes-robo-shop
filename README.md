@@ -14,8 +14,6 @@ kubectl apply -f https://s3.us-west-2.amazonaws.com/amazon-eks/docs/eks-console-
 # Deploy Flux Components (GitOps)
 kubectl apply -f flux-system/gotk-components.yaml
 kubectl apply -f flux-system/gotk-sync.yaml
-# Deploy Robot Shop
-kubectl apply -f production/infrastructure.yaml # Não é preciso
 ```
 
 ## Troubleshooting
