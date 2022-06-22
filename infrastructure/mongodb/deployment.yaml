@@ -4,7 +4,8 @@ metadata:
   name: mongodb
   labels:
     service: mongodb
-
+    app.kubernetes.io/version: 1
+    app.kubernetes.io/name: mongodb
 spec:
   replicas: 1
   selector:
