@@ -69,7 +69,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: istio-gateway
-  namespace: istio-system
+  namespace: robot-shop
   labels:
     app.kubernetes.io/part-of: istio
 spec:

@@ -9,7 +9,7 @@ cd clusters
 terraform init
 AWS_PROFILE=outscope-tests terraform apply --auto-approve
 # Configure Kubectl
-aws eks update-kubeconfig --region eu-west-1 --name robo-shop-cluster --profile outscope-tests
+aws eks update-kubeconfig --region eu-west-1 --name robotshop-cluster --profile outscope-tests
 kubectl apply -f https://s3.us-west-2.amazonaws.com/amazon-eks/docs/eks-console-full-access.yaml
 # Deploy Flux Components (GitOps)
 kubectl apply -f flux-system/gotk-components.yaml
@@ -92,6 +92,7 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
   * Canary Deployments vs blue green in istio
     * https://fluxcd.io/flagger/tutorials/istio-progressive-delivery/
 * Chaos Engineering
+
 ## Study
 
 * cert manager controller, secrets
