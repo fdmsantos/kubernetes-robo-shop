@@ -62,7 +62,7 @@ module "eks" {
       to_port          = 40000
       type             = "ingress"
       cidr_blocks      = ["0.0.0.0/0"] # NOTE: Open to World!!! don't use in production
-      ipv6_cidr_blocks = ["::/0"]      # NOTE: Open to World!!! don't use in production
+#      ipv6_cidr_blocks = ["::/0"]      # NOTE: Open to World!!! don't use in production
     }
 
     ingress_self_all = {
@@ -73,6 +73,16 @@ module "eks" {
       type        = "ingress"
       self        = true
     }
+
+    ingress_istio = {
+      description      = "Kube APi Server to Istio deamon"
+      protocol         = "tcp"
+      from_port        = 15017
+      to_port          = 15017
+      type             = "ingress"
+      cidr_blocks      = ["0.0.0.0/0"] # NOTE: Needs to be open only to EKS Master Security Group => Fix
+    }
+
     egress_all = {
       description      = "Node all egress"
       protocol         = "-1"
@@ -80,7 +90,7 @@ module "eks" {
       to_port          = 0
       type             = "egress"
       cidr_blocks      = ["0.0.0.0/0"]
-      ipv6_cidr_blocks = ["::/0"]
+#      ipv6_cidr_blocks = ["::/0"]
     }
   }
 
