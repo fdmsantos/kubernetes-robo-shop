@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         service: rabbitmq
+        version: "1"
+        app: rabbitmq
     spec:
       containers:
         - name: rabbitmq

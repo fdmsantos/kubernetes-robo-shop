@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         service: web
+        version: "1"
+        app: web
     spec:
       containers:
         - name: web

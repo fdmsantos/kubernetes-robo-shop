@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         service: cart
+        version: "1"
+        app: cart
     spec:
       containers:
         - name: cart

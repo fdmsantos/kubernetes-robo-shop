@@ -9,6 +9,8 @@ spec:
   selector:
     matchLabels:
       service: catalogue
+      version: "1"
+      app: catalogue
   template:
     metadata:
       labels:

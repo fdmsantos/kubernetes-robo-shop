@@ -10,12 +10,12 @@ spec:
   selector:
     matchLabels:
       service: payment
-      stage: prod
   template:
     metadata:
       labels:
         service: payment
-        stage: prod
+        version: "1"
+        app: payment
     spec:
       containers:
         - name: payment

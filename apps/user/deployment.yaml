@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         service: user
+        version: "1"
+        app: user
     spec:
       containers:
         - name: user

@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         service: ratings
+        version: "1"
+        app: ratings
     spec:
       containers:
         - name: ratings

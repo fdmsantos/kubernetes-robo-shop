@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         service: shipping
+        version: "1"
+        app: shipping
     spec:
       containers:
         - name: shipping
