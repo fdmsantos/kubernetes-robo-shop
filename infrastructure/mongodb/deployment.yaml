@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         service: mongodb
-        version: 1
+        version: "1"
         app: mongodb
     spec:
       containers:
