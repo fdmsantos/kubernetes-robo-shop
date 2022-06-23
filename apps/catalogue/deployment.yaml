@@ -20,11 +20,11 @@ spec:
         - name: catalogue
           image: robotshop/rs-catalogue:latest
           imagePullPolicy: IfNotPresent
-          env:
-            - name: INSTANA_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
+#          env:
+#            - name: INSTANA_AGENT_HOST
+#              valueFrom:
+#                fieldRef:
+#                  fieldPath: status.hostIP
           ports:
             - containerPort: 8080
           resources:

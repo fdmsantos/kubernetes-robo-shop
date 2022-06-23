@@ -9,12 +9,12 @@ spec:
   selector:
     matchLabels:
       service: dispatch
-      version: "1"
-      app: dispatch
   template:
     metadata:
       labels:
         service: dispatch
+        version: "1"
+        app: dispatch
     spec:
       containers:
         - name: dispatch
