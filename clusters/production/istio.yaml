@@ -24,7 +24,7 @@ metadata:
 spec:
   dependsOn:
     - name: istio-system
-  interval: 30s
+  interval: 1m0s
   path: ./istio/gateway
   prune: true
   wait: true
@@ -40,7 +40,7 @@ metadata:
 spec:
   dependsOn:
     - name: istio-system
-  interval: 30s
+  interval: 1m0s
   path: ./istio/kiali
   prune: true
   wait: true

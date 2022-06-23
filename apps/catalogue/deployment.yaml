@@ -9,12 +9,12 @@ spec:
   selector:
     matchLabels:
       service: catalogue
-      version: "1"
-      app: catalogue
   template:
     metadata:
       labels:
         service: catalogue
+        version: "1"
+        app: catalogue
     spec:
       containers:
         - name: catalogue
