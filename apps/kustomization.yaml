@@ -10,3 +10,4 @@ resources:
   - shipping
   - user
   - web
+  - loadgeneration
