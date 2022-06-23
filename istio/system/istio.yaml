@@ -69,24 +69,21 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: istio-gateway
-  namespace: robot-shop
+  namespace: istio-system
   labels:
     app.kubernetes.io/part-of: istio
 spec:
   releaseName: istio-gateway
   dependsOn:
     - name: istio-base
-      namespace: istio-system
     - name: istiod
-      namespace: istio-system
   chart:
     spec:
-      version: "${istio_version}"
+      version: "${version}"
       chart: gateway
       sourceRef:
         kind: HelmRepository
         name: istio
-        namespace: istio-system
   interval: 1h0m0s
   values:
     autoscaling:

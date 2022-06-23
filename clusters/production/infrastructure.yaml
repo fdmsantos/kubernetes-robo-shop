@@ -4,6 +4,8 @@ metadata:
   name: infrastructure
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: istio-system
   interval: 30s
   sourceRef:
     kind: GitRepository
