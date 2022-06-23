@@ -30,18 +30,3 @@ spec:
         kind: HelmRepository
         name: kiali
   interval: 1h0m0s
----
-apiVersion: kiali.io/v1alpha1
-kind: Kiali
-metadata:
-  name: kiali
-  namespace: istio-system
-spec:
-  auth:
-    strategy: "token"
-  deployment:
-    accessible_namespaces: ["robot-shop"]
-    view_only_mode: false
-    service_type: NodePort
-  server:
-    web_root: "/kiali"
