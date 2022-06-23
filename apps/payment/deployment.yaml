@@ -18,17 +18,15 @@ spec:
         app: payment
     spec:
       containers:
-        - name: payment
-          image: robotshop/rs-payment:latest
+        - name: payment-fix
+          image: robotshop/rs-payment-fix:latest
           imagePullPolicy: IfNotPresent
           # agent networking access
-          env:
+#          env:
 #            - name: INSTANA_AGENT_HOST
 #              valueFrom:
 #                fieldRef:
 #                  fieldPath: status.hostIP
-            - name: PAYMENT_GATEWAY
-              value: "null"
           ports:
             - containerPort: 8080
           resources:
