@@ -82,11 +82,12 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
 * DevOps Pipelines
 * Service Mesh
   * Istio, Envoy
-    * Tracing
     * Encryption
+    * Grafana
     * Flagger
       * https://ruzickap.github.io/k8s-flagger-istio-flux/
       * https://github.com/stefanprodan/gitops-istio/blob/main/istio/system/flagger.yaml
+    * Put Add-ons via Istio Gateway
   * AWs App Mesh
   * Traffic Mirroring
   * Canary Deployments vs blue green in istio
