@@ -5,7 +5,7 @@ metadata:
   name: robotshop-gateway
 spec:
   selector:
-    istio: ingressgateway # default Istio controller
+    istio: gateway # default Istio controller
   servers:
     - port:
         number: 80
