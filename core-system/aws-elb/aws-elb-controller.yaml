@@ -20,12 +20,14 @@ spec:
     crds: CreateReplace
   chart:
     spec:
-      clusterName: "robotshop-cluster"
-      serviceAccount:
-        name: aws-load-balancer-controller
-        create: false
-      chart: base
+      chart: aws-load-balancer-controller
+      version: 2.4.2
       sourceRef:
         kind: HelmRepository
         name: aws-elb-controller
+  values:
+    clusterName: "robotshop-cluster"
+    serviceAccount:
+      name: aws-load-balancer-controller
+      create: false
   interval: 1h0m0s
