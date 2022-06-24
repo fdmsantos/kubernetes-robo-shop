@@ -4,31 +4,13 @@ Repo for Kubernetes/AWS Training
 ## Deploy
 
 ```bash
-cd clusters
-# Deploy EKS cluster
-terraform init
-AWS_PROFILE=outscope-tests terraform apply --auto-approve
-# Configure Kubectl
-aws eks update-kubeconfig --region eu-west-1 --name robotshop-cluster --profile outscope-tests
-kubectl apply -f https://s3.us-west-2.amazonaws.com/amazon-eks/docs/eks-console-full-access.yaml
-# Deploy Flux Components (GitOps)
-kubectl apply -f flux-system/gotk-components.yaml
-kubectl apply -f flux-system/gotk-sync.yaml
+./helpers/deploy.sh
 ```
 
 ## Destroy
 
 ```bash
-cd clusters
-flux delete -s kustomization apps
-flux delete -s kustomization infrastructure
-flux delete -s kustomization istio-jaeger
-flux delete -s kustomization istio-grafana
-flux delete -s kustomization istio-kiali
-flux delete -s kustomization istio-system
-flux delete -s kustomization flux-system
-flux delete -s kustomization aws-elb-controller
-AWS_PROFILE=outscope-tests terraform destroy --auto-approve
+./helpers/destroy.sh
 ```
 
 ## Troubleshooting
