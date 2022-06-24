@@ -4,3 +4,4 @@ resources:
   - deployment.yaml
   - deployment-fix.yaml
   - service.yaml
+  - canary.yaml
