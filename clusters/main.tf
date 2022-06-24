@@ -11,6 +11,10 @@ module "vpc" {
 
   enable_nat_gateway = false
   enable_vpn_gateway = false
+
+  public_subnet_tags = {
+    "kubernetes.io/role/elb" = 1
+  }
 }
 
 module "eks" {
