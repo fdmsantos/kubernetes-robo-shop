@@ -24,7 +24,14 @@ spec:
   gateways:
     - robotshop-gateway
   http:
-    # default route
+    - match:
+        - uri:
+            prefix: "/healthz/ready"
+      route:
+        - destination:
+            host: istio-gateway.istio-system.svc.cluster.local
+            port:
+              number: 15021
     - route:
         - destination:
             host: web.robot-shop.svc.cluster.local
