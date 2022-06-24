@@ -2,9 +2,9 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: aws-elb-controller
-  namespace: kube-system
+  namespace: flux-system
 spec:
-  interval: 1h0m0s
+  interval: 10m0s
   url: https://aws.github.io/eks-charts
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1

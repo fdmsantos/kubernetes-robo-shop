@@ -10,4 +10,5 @@ resources:
   - shipping
   - user
   - web
+  - gateway.yaml
   - loadgeneration
