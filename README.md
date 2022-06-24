@@ -27,9 +27,9 @@ flux delete -s kustomization istio-grafana
 flux delete -s kustomization istio-kiali
 flux delete -s kustomization istio-system
 flux delete -s kustomization flux-system
+flux delete -s kustomization aws-elb-controller
 AWS_PROFILE=outscope-tests terraform destroy --auto-approve
 ```
-
 
 ## Troubleshooting
 

@@ -83,6 +83,15 @@ module "eks" {
       cidr_blocks      = ["0.0.0.0/0"] # NOTE: Needs to be open only to EKS Master Security Group => Fix
     }
 
+    ingress_elb_controller_webhook = {
+      description      = "AWS ELB Controller Webhook"
+      protocol         = "tcp"
+      from_port        = 9443
+      to_port          = 9443
+      type             = "ingress"
+      cidr_blocks      = ["0.0.0.0/0"] # NOTE: Needs to be open only to EKS Master Security Group => Fix
+    }
+
     egress_all = {
       description      = "Node all egress"
       protocol         = "-1"
