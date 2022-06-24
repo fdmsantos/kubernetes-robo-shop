@@ -4,19 +4,18 @@ metadata:
   name: payment-fix
   labels:
     service: payment
-    stage: test
+    version: test
 spec:
   replicas: 1
   selector:
     matchLabels:
       service: payment
-      stage: test
+      version: test
   template:
     metadata:
       labels:
         service: payment
-        stage: test
-        version: "2"
+        version: test
         app: payment
     spec:
       containers:

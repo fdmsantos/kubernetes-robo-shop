@@ -4,17 +4,18 @@ metadata:
   name: payment
   labels:
     service: payment
-    stage: prod
+    version: prod
 spec:
   replicas: 1
   selector:
     matchLabels:
       service: payment
+      version: prod
   template:
     metadata:
       labels:
         service: payment
-        version: "1"
+        version: prod
         app: payment
     spec:
       containers:
