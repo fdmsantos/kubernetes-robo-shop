@@ -28,5 +28,5 @@ spec:
     clusterName: "robotshop-cluster"
     serviceAccount:
       name: aws-load-balancer-controller
-      create: false
+      create: true
   interval: 10m0s
