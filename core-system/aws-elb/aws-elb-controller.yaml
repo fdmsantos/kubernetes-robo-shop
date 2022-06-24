@@ -30,4 +30,4 @@ spec:
     serviceAccount:
       name: aws-load-balancer-controller
       create: false
-  interval: 1h0m0s
+  interval: 10m0s
