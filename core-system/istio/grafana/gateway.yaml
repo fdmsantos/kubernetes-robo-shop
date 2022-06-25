@@ -3,6 +3,9 @@ kind: Gateway
 metadata:
   name: grafana-gateway
   namespace: istio-system
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "k8s-istiosys-istiogat-4ef32a305c-597890104.eu-west-1.elb.amazonaws.com"
+    external-dns.alpha.kubernetes.io/hostname: "grafana.meraki-mv-rekognition.aws.outscope.com"
 spec:
   selector:
     istio: gateway
