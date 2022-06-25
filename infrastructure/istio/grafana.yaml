@@ -221,7 +221,6 @@ metadata:
   namespace: istio-system
 
 ---
-
 apiVersion: v1
 data:
   istio-extension-dashboard.json: |
