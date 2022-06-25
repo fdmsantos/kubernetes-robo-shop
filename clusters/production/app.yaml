@@ -11,4 +11,4 @@ spec:
   path: ./app
   prune: true
   dependsOn:
-    - name: infrastructure
+    - name: istio-infrastructure
