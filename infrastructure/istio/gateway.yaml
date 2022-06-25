@@ -40,7 +40,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: instance
     alb.ingress.kubernetes.io/backend-protocol: HTTP
     alb.ingress.kubernetes.io/healthcheck-path: /healthz/ready
-    alb.ingress.kubernetes.io/healthcheck-port: "31127"
+    alb.ingress.kubernetes.io/healthcheck-port: "32671"
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
       # AWS Certificate Manager certificate's ARN
       #alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:eu-west-3:***:certificate/fcaa9fd2-1b55-48d7-92f2-e829f7bafafd"
