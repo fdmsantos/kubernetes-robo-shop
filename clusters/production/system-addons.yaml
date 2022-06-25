@@ -25,7 +25,7 @@ spec:
   dependsOn:
     - name: istio-system
   interval: 1m0s
-  path: ./system-addons/external-dns-route53
+  path: ./system-addons/external-dns-aws-route53
   prune: true
   wait: true
   sourceRef:
