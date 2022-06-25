@@ -123,9 +123,9 @@ kind: Gateway
 metadata:
   name: kiali-gateway
   namespace: istio-system
-#  annotations:
+  annotations:
 #    external-dns.alpha.kubernetes.io/target: "k8s-istiosys-istiogat-4ef32a305c-984208283.eu-west-1.elb.amazonaws.com"
-#    external-dns.alpha.kubernetes.io/hostname: "grafana.meraki-mv-rekognition.aws.outscope.com"
+    external-dns.alpha.kubernetes.io/hostname: "grafana.meraki-mv-rekognition.aws.outscope.com"
 spec:
   selector:
     istio: gateway
