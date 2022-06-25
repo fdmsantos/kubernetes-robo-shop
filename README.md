@@ -1,19 +1,34 @@
 # Robo Shop
 Repo for Kubernetes/AWS Training
 
-## Deploy
+## Main components
+
+* Deployment: [Terraform](https://www.terraform.io/)
+* GitOps: [Flux](https://fluxcd.io/docs/get-started/)
+* [Robot Shop App](https://github.com/instana/robot-shop)
+* Service Mesh: [Istio](https://istio.io/)
+* AWS AddOns
+  * [AWS Route53 External DNS](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md) 
+  * [AWS Load Balancer Controller](https://github.com/kubernetes-sigs/aws-load-balancer-controller)
+
+## Usage
+
+* Pre-Requisites
+  * Created Public Route53 Hosted Zone
+
+* Deploy
 
 ```bash
 ./helpers/deploy.sh
 ```
 
-## Destroy
+* Destroy
 
 ```bash
 ./helpers/destroy.sh
 ```
 
-## Troubleshooting
+* Troubleshooting
 
 ```bash
 kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
@@ -100,3 +115,7 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
 * Admission webhooks
 * Initializers
 * PodPresets
+* Harbor
+* Open Policy Agent
+* Rook
+* Tuf

@@ -1,5 +1,3 @@
-data "aws_caller_identity" "current" {}
-
 module "vpc" {
   source          = "terraform-aws-modules/vpc/aws"
   version         = "3.14.0"
@@ -128,6 +126,19 @@ module "loadbalancer_role" {
     one = {
       provider_arn               = module.eks.oidc_provider_arn
       namespace_service_accounts = ["kube-system:aws-load-balancer-controller"]
+    }
+  }
+}
+
+module "external_dns_route53_role" {
+  source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  role_name                     = "AmazonEKSAllowExternalDNSUpdates"
+  attach_external_dns_policy    = true
+  external_dns_hosted_zone_arns = [data.aws_route53_zone.this.arn]
+  oidc_providers = {
+    ex = {
+      provider_arn               = module.eks.oidc_provider_arn
+      namespace_service_accounts = ["kube-system:external-dns"]
     }
   }
 }

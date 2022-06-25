@@ -1,0 +1,27 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: aws-elb-controller
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  path: ./core-system/aws-addons/external-dns-route53
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: aws-elb-controller
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  path: ./core-system/aws-addons/elb-controller
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
