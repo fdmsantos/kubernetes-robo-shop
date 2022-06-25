@@ -188,4 +188,4 @@ spec:
         - destination:
             host: tracing
             port:
-              number: 32252
+              number: 80
