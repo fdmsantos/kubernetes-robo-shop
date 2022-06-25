@@ -3,6 +3,7 @@ Repo for Kubernetes/AWS Training
 
 ## Main components
 
+* Kubernetes Cluster: [EKS](https://aws.amazon.com/eks/)
 * Deployment: [Terraform](https://www.terraform.io/)
 * GitOps: [Flux](https://fluxcd.io/docs/get-started/)
 * [Robot Shop App](https://github.com/instana/robot-shop)
