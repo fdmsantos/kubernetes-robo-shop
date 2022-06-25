@@ -1,0 +1,32 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: kiali
+  namespace: istio-system
+  labels:
+    app.kubernetes.io/part-of: istio
+spec:
+  interval: 1h0m0s
+  url: https://kiali.org/helm-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kiali-operator
+  namespace: istio-system
+  labels:
+    app.kubernetes.io/part-of: istio
+spec:
+  releaseName: kiali-operator
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  chart:
+    spec:
+      version: "${kiali_version}"
+      chart: kiali-operator
+      sourceRef:
+        kind: HelmRepository
+        name: kiali
+  interval: 1h0m0s
