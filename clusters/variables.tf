@@ -4,6 +4,6 @@ variable "name_prefix" {
 }
 
 variable "domain" {
-  type = string
+  type    = string
   default = "meraki-mv-rekognition.aws.outscope.com"
 }

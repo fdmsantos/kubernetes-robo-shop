@@ -93,8 +93,7 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
 * Monitoring
 * DevOps Pipelines
 * Service Mesh
-  * Istio, Envoy
-    * Flagger
+    * istio Flagger
       * https://ruzickap.github.io/k8s-flagger-istio-flux/
       * https://github.com/stefanprodan/gitops-istio/blob/main/istio/system/flagger.yaml
   * Traffic Mirroring

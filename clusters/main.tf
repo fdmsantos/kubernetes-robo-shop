@@ -58,13 +58,13 @@ module "eks" {
   }
   node_security_group_additional_rules = {
     ingress_all = {
-      description      = "All Node Ports Open"
-      protocol         = "tcp"
-      from_port        = 30000
-      to_port          = 40000
-      type             = "ingress"
-      cidr_blocks      = ["0.0.0.0/0"] # NOTE: Open to World!!! don't use in production
-#      ipv6_cidr_blocks = ["::/0"]      # NOTE: Open to World!!! don't use in production
+      description = "All Node Ports Open"
+      protocol    = "tcp"
+      from_port   = 30000
+      to_port     = 40000
+      type        = "ingress"
+      cidr_blocks = ["0.0.0.0/0"] # NOTE: Open to World!!! don't use in production
+      #      ipv6_cidr_blocks = ["::/0"]      # NOTE: Open to World!!! don't use in production
     }
 
     ingress_self_all = {
@@ -77,36 +77,36 @@ module "eks" {
     }
 
     ingress_istio = {
-      description      = "Kube APi Server to Istio deamon"
-      protocol         = "tcp"
-      from_port        = 15017
-      to_port          = 15017
-      type             = "ingress"
-      cidr_blocks      = ["0.0.0.0/0"] # NOTE: Needs to be open only to EKS Master Security Group => Fix
+      description = "Kube APi Server to Istio deamon"
+      protocol    = "tcp"
+      from_port   = 15017
+      to_port     = 15017
+      type        = "ingress"
+      cidr_blocks = ["0.0.0.0/0"] # NOTE: Needs to be open only to EKS Master Security Group => Fix
     }
 
     ingress_elb_controller_webhook = {
-      description      = "AWS ELB Controller Webhook"
-      protocol         = "tcp"
-      from_port        = 9443
-      to_port          = 9443
-      type             = "ingress"
-      cidr_blocks      = ["0.0.0.0/0"] # NOTE: Needs to be open only to EKS Master Security Group => Fix
+      description = "AWS ELB Controller Webhook"
+      protocol    = "tcp"
+      from_port   = 9443
+      to_port     = 9443
+      type        = "ingress"
+      cidr_blocks = ["0.0.0.0/0"] # NOTE: Needs to be open only to EKS Master Security Group => Fix
     }
 
     egress_all = {
-      description      = "Node all egress"
-      protocol         = "-1"
-      from_port        = 0
-      to_port          = 0
-      type             = "egress"
-      cidr_blocks      = ["0.0.0.0/0"]
-#      ipv6_cidr_blocks = ["::/0"]
+      description = "Node all egress"
+      protocol    = "-1"
+      from_port   = 0
+      to_port     = 0
+      type        = "egress"
+      cidr_blocks = ["0.0.0.0/0"]
+      #      ipv6_cidr_blocks = ["::/0"]
     }
   }
 
   # aws-auth configmap
-#  create_aws_auth_configmap = true
+  #  create_aws_auth_configmap = true
   manage_aws_auth_configmap = true
 
   aws_auth_roles = [
@@ -131,7 +131,7 @@ module "loadbalancer_role" {
 }
 
 module "external_dns_route53_role" {
-  source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  source                        = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
   role_name                     = "AmazonEKSAllowExternalDNSUpdates"
   attach_external_dns_policy    = true
   external_dns_hosted_zone_arns = [data.aws_route53_zone.this.arn]
@@ -141,4 +141,12 @@ module "external_dns_route53_role" {
       namespace_service_accounts = ["kube-system:external-dns"]
     }
   }
+}
+
+module "acm" {
+  source              = "terraform-aws-modules/acm/aws"
+  version             = "~> 3.0"
+  domain_name         = "*.${var.domain}"
+  zone_id             = data.aws_route53_zone.this.id
+  wait_for_validation = true
 }
