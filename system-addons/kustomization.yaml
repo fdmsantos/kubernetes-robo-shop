@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - aws-loadbalancer-controller
   - istio
-  - externaldns-aws-route53
+  - external-dns-aws-route53
