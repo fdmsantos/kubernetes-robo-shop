@@ -153,3 +153,39 @@ spec:
             host: kiali
             port:
               number: 20001
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: jaeger-gateway
+  namespace: istio-system
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "k8s-istiosys-istiogat-4ef32a305c-984208283.eu-west-1.elb.amazonaws.com"
+    external-dns.alpha.kubernetes.io/hostname: "jaeger.meraki-mv-rekognition.aws.outscope.com"
+spec:
+  selector:
+    istio: gateway
+  servers:
+    - port:
+        number: 80
+        name: http-jaeger
+        protocol: HTTP
+      hosts:
+        - "jaeger.meraki-mv-rekognition.aws.outscope.com"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: jaeger-vs
+  namespace: istio-system
+spec:
+  hosts:
+    - "jaeger.meraki-mv-rekognition.aws.outscope.com"
+  gateways:
+    - jaeger-gateway
+  http:
+    - route:
+        - destination:
+            host: tracing
+            port:
+              number: 32252
