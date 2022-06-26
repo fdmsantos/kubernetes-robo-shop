@@ -87,9 +87,6 @@ kind: Gateway
 metadata:
   name: grafana-gateway
   namespace: istio-system
-#  annotations:
-#    external-dns.alpha.kubernetes.io/target: "k8s-istiosys-istiogat-4ef32a305c-984208283.eu-west-1.elb.amazonaws.com"
-#    external-dns.alpha.kubernetes.io/hostname: "grafana.meraki-mv-rekognition.aws.outscope.com"
 spec:
   selector:
     istio: gateway
@@ -123,9 +120,6 @@ kind: Gateway
 metadata:
   name: kiali-gateway
   namespace: istio-system
-#  annotations:
-#    external-dns.alpha.kubernetes.io/target: "k8s-istiosys-istiogat-4ef32a305c-984208283.eu-west-1.elb.amazonaws.com"
-#    external-dns.alpha.kubernetes.io/hostname: "kiali.meraki-mv-rekognition.aws.outscope.com"
 spec:
   selector:
     istio: gateway
@@ -159,9 +153,6 @@ kind: Gateway
 metadata:
   name: jaeger-gateway
   namespace: istio-system
-#  annotations:
-#    external-dns.alpha.kubernetes.io/target: "k8s-istiosys-istiogat-4ef32a305c-984208283.eu-west-1.elb.amazonaws.com"
-#    external-dns.alpha.kubernetes.io/hostname: "jaeger.meraki-mv-rekognition.aws.outscope.com"
 spec:
   selector:
     istio: gateway
