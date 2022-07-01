@@ -45,3 +45,17 @@ variable "github_ssh_pub_key" {
 }
 
 # ===========================================================
+
+# ======================== Versions =========================
+variable "istio_verion" {
+  description = "Istio Version"
+  type        = string
+  default     = "1.14.1"
+}
+
+variable "kiali_verion" {
+  description = "Kiali Version"
+  type        = string
+  default     = "1.52.0"
+}
+# ===========================================================

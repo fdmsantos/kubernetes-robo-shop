@@ -53,4 +53,20 @@ resource "kubernetes_secret" "main" {
     known_hosts    = "github.com ${var.github_ssh_pub_key}"
   }
 }
+
+resource "kubernetes_config_map" "flux-vars" {
+  depends_on = [kubernetes_namespace.flux_system]
+  metadata {
+    name      = "flux-infra-variables"
+    namespace = data.flux_sync.main.namespace
+    annotations = {
+      "kustomize.toolkit.fluxcd.io/ssa" = "merge"
+    }
+  }
+
+  data = {
+    istio_version = var.istio_verion
+    kiali_version = var.kiali_verion
+  }
+}
 # ==================================================================
