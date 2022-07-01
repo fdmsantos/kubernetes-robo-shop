@@ -1,0 +1,6 @@
+# GitHub
+github_user               = "<YOUR_GITHUB_USER_HERE>"               # Your `GitHub` username
+github_token              = "<YOUR_GITHUB_TOKEN_HERE>"              # Your `GitHub` personal access token
+git_repository_name       = "<YOUR_GIT_REPOSITORY_NAME_HERE>"       # Git repository where `Flux CD` manifests should be stored
+git_repository_branch     = "<YOUR_GIT_REPOSITORY_BRANCH_HERE>"     # Branch name to use for this `Git` repository (e.g.: `main`)
+git_repository_sync_path  = "<YOUR_GIT_REPOSITORY_SYNC_PATH_HERE>"  # Git repository path where the manifests to sync are committed (e.g.: `clusters/production`)

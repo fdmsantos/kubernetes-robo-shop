@@ -1,5 +1,18 @@
 terraform {
   required_version = ">= 0.12"
+  required_providers {
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+    }
+    flux = {
+      source  = "fluxcd/flux"
+    }
+  }
+}
+
+provider "github" {
+  owner = var.github_user
+  token = var.github_token
 }
 
 provider "aws" {
@@ -21,3 +34,9 @@ provider "kubernetes" {
     args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_id]
   }
 }
+
+#provider "helm" {
+#  kubernetes {
+#    config_path = "~/.kube/config"
+#  }
+#}
