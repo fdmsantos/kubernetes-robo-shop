@@ -12,3 +12,7 @@ spec:
   prune: true
   dependsOn:
     - name: istio-infrastructure
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: flux-infra-variables

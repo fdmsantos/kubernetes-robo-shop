@@ -1,49 +1,100 @@
-#---
-#apiVersion: networking.istio.io/v1alpha3
-#kind: Gateway
-#metadata:
-#  name: robotshop-gateway
-#spec:
-#  selector:
-#    istio: gateway # default Istio controller
-#  servers:
-#    - port:
-#        number: 80
-#        name: http
-#        protocol: HTTP
-#      hosts:
-#        - "*"
-#---
-#apiVersion: networking.istio.io/v1alpha3
-#kind: VirtualService
-#metadata:
-#  name: robotshop
-#spec:
-#  hosts:
-#    - "*"
-#  gateways:
-#    - robotshop-gateway
-#  http:
-#    - match:
-#        - uri:
-#            prefix: "/healthz/ready"
-#      route:
-#        - destination:
-#            host: istio-gateway.istio-system.svc.cluster.local
-#            port:
-#              number: 15021
-#    - match:
-#        - uri:
-#            prefix: "/"
-#      rewrite:
-#        uri: "/"
-#      route:
-#        - destination:
-#            host: grafana.istio-system.svc.cluster.local
-#            port:
-#              number: 3000
-#    - route:
-#        - destination:
-#            host: web.robot-shop.svc.cluster.local
-#            port:
-#              number: 8080
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: robot-gateway
+  namespace: robot-shop
+spec:
+  releaseName: robot-gateway
+  dependsOn:
+    - name: istio-base
+    - name: istiod
+  chart:
+    spec:
+      version: 1.14.1
+      chart: gateway
+      sourceRef:
+        kind: HelmRepository
+        name: istio
+  interval: 1h0m0s
+  values:
+    labels:
+      gateway: robot-shop
+    autoscaling:
+      enabled: false
+    resources:
+      requests:
+        cpu: 10m
+        memory: 128Mi
+    service:
+      type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: robot-shop
+  namespace: robot-shop
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/healthcheck-path: /healthz/ready
+    alb.ingress.kubernetes.io/healthcheck-port: "32671"
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/certificate-arn: "${acm_certificate_arn}"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    external-dns.alpha.kubernetes.io/hostname: "roboshop.meraki-mv-rekognition.aws.outscope.com"
+
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /healthz/ready
+            pathType: Prefix
+            backend:
+              service:
+                name: robot-gateway
+                port:
+                  number: 15021
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: robot-gateway
+                port:
+                  number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: robot-gateway
+  namespace: robot-shop
+spec:
+  selector:
+    gateway: robot-shop
+  servers:
+    - port:
+        number: 80
+        name: robot-http
+        protocol: HTTP
+      hosts:
+        - "roboshop.meraki-mv-rekognition.aws.outscope.com"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: robot-vs
+  namespace: robot-shop
+spec:
+  hosts:
+    - "roboshop.meraki-mv-rekognition.aws.outscope.com"
+  gateways:
+    - robot-gateway
+  http:
+    - route:
+        - destination:
+            host: web
+            port:
+              number: 8080
