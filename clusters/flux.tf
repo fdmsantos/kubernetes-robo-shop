@@ -65,8 +65,9 @@ resource "kubernetes_config_map" "flux-vars" {
   }
 
   data = {
-    istio_version = var.istio_verion
-    kiali_version = var.kiali_verion
+    istio_version       = var.istio_verion
+    kiali_version       = var.kiali_verion
+    acm_certificate_arn = module.acm.acm_certificate_arn
   }
 }
 # ==================================================================
