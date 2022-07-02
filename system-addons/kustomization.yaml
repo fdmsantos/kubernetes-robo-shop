@@ -4,3 +4,4 @@ resources:
   - aws-loadbalancer-controller
   - istio
   - external-dns-aws-route53
+  - cluster-autoscaler
