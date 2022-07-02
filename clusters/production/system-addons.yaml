@@ -49,7 +49,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: aws-elb-controller
+  name: cluster-autoscaler-controller
   namespace: flux-system
 spec:
   interval: 1m0s
