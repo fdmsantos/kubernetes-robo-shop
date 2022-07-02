@@ -16,6 +16,8 @@ spec:
         namespace: istio-system
   interval: 1h0m0s
   values:
+    selectorLabels:
+      gateway: robot-shop
     autoscaling:
       enabled: false
     resources:
