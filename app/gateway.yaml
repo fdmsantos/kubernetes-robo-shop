@@ -16,8 +16,6 @@ spec:
         namespace: istio-system
   interval: 1h0m0s
   values:
-    selectorLabels:
-      gateway: robot-shop
     autoscaling:
       enabled: false
     resources:
@@ -71,7 +69,7 @@ metadata:
   namespace: robot-shop
 spec:
   selector:
-    app: robot-gateway
+    istio: robot-gateway
   servers:
     - port:
         number: 80
