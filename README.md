@@ -11,6 +11,7 @@ Repo for Kubernetes/AWS Training
 * AWS AddOns
   * [AWS Route53 External DNS](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md) 
   * [AWS Load Balancer Controller](https://github.com/kubernetes-sigs/aws-load-balancer-controller)
+  * [AWS Cluster Autoscaler](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md)
 
 ## Usage
 
