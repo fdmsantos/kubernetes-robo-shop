@@ -6,9 +6,6 @@ metadata:
   namespace: robot-shop
 spec:
   releaseName: robot-gateway
-  dependsOn:
-    - name: istio-base
-    - name: istiod
   chart:
     spec:
       version: 1.14.1
@@ -16,6 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: istio
+        namespace: istio-system
   interval: 1h0m0s
   values:
     labels:
