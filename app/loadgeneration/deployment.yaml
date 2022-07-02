@@ -20,9 +20,9 @@ spec:
         - name: load
           env:
             - name: HOST
-              value: "http://web:8080/"
+              value: "https://roboshop.meraki-mv-rekognition.aws.outscope.com/"
             - name: NUM_CLIENTS
-              value: "15"
+              value: "30"
             - name: SILENT
               value: "0"
             - name: ERROR
