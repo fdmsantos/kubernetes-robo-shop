@@ -41,9 +41,9 @@ module "eks" {
 
   //  # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
-    disk_size      = 50
-#    instance_types = ["t3.xlarge"]
-    instance_types = ["t3.medium"]
+    disk_size = 50
+    #    instance_types = ["t3.xlarge"]
+    instance_types = ["t3.small"]
     #    key_name        = aws_key_pair.this.key_name
   }
   eks_managed_node_groups = {
@@ -53,7 +53,7 @@ module "eks" {
       max_size     = 10
       desired_size = 1
 
-      instance_types = ["t3.xlarge"]
+      instance_types = ["t3.small"]
       capacity_type  = "ON_DEMAND"
     }
   }
@@ -145,10 +145,10 @@ module "external_dns_route53_role" {
 }
 
 module "cluster_autoscaler_role" {
-  source                        = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  role_name                     = "AmazonEKSClusterAutoscalerRole"
+  source                           = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  role_name                        = "AmazonEKSClusterAutoscalerRole"
   attach_cluster_autoscaler_policy = true
-  cluster_autoscaler_cluster_ids = [module.eks.cluster_id]
+  cluster_autoscaler_cluster_ids   = [module.eks.cluster_id]
   oidc_providers = {
     ex = {
       provider_arn               = module.eks.oidc_provider_arn
