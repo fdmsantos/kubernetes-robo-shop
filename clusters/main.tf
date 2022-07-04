@@ -42,21 +42,22 @@ module "eks" {
   //  # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
     disk_size = 50
-    instance_types = ["t3.xlarge"]
+    #    instance_types = ["t3.xlarge"]
+    instance_types = ["t3.small"]
     #    key_name        = aws_key_pair.this.key_name
   }
 
   # Fargate Profile(s)
-#  fargate_profiles = {
-#    default = {
-#      name = "default"
-#      selectors = [
-#        {
-#          namespace = "default"
-#        }
-#      ]
-#    }
-#  }
+  #  fargate_profiles = {
+  #    default = {
+  #      name = "default"
+  #      selectors = [
+  #        {
+  #          namespace = "default"
+  #        }
+  #      ]
+  #    }
+  #  }
 
   eks_managed_node_groups = {
     blue = {}
@@ -65,7 +66,7 @@ module "eks" {
       max_size     = 10
       desired_size = 1
 
-      instance_types = ["t3.xlarge"]
+      instance_types = ["t3.small"]
       capacity_type  = "ON_DEMAND"
     }
   }

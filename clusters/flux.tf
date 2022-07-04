@@ -65,9 +65,12 @@ resource "kubernetes_config_map" "flux-vars" {
   }
 
   data = {
-    istio_version       = var.istio_verion
-    kiali_version       = var.kiali_verion
-    acm_certificate_arn = module.acm.acm_certificate_arn
+    istio_version                  = var.istio_verion
+    kiali_version                  = var.kiali_verion
+    acm_certificate_arn            = module.acm.acm_certificate_arn
+    iam_elbcontroller_role_arn     = module.loadbalancer_role.iam_role_arn
+    iam_clusterautoscaler_role_arn = module.cluster_autoscaler_role.iam_role_arn
+    iam_externaldns_role_arn       = module.external_dns_route53_role.iam_role_arn
   }
 }
 # ==================================================================
