@@ -69,7 +69,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: grafana-gateway
+  name: istio-gateway
   namespace: istio-system
 spec:
   selector:
@@ -77,90 +77,150 @@ spec:
   servers:
     - port:
         number: 80
-        name: http-grafana
+        name: http
         protocol: HTTP
       hosts:
-        - "grafana.meraki-mv-rekognition.aws.outscope.com"
+        - "*"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: grafana-vs
+  name: istio-gateway-vs
   namespace: istio-system
 spec:
   hosts:
-    - "grafana.meraki-mv-rekognition.aws.outscope.com"
+    - "*"
   gateways:
-    - grafana-gateway
+    - istio-gateway
   http:
-    - route:
+    - match:
+        - uri:
+            exact: /healthz/ready
+      route:
+        - destination:
+            host: istio-gateway
+            port:
+              number: 15021
+    - match:
+        - headers:
+            host: grafana.meraki-mv-rekognition.aws.outscope.com
+      route:
         - destination:
             host: grafana
             port:
               number: 3000
----
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: kiali-gateway
-  namespace: istio-system
-spec:
-  selector:
-    istio: gateway
-  servers:
-    - port:
-        number: 80
-        name: http-kiali
-        protocol: HTTP
-      hosts:
-        - "kiali.meraki-mv-rekognition.aws.outscope.com"
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: kiali-vs
-  namespace: istio-system
-spec:
-  hosts:
-    - "kiali.meraki-mv-rekognition.aws.outscope.com"
-  gateways:
-    - kiali-gateway
-  http:
-    - route:
+    - match:
+        - headers:
+            host: kiali.meraki-mv-rekognition.aws.outscope.com
+      route:
         - destination:
             host: kiali
             port:
               number: 20001
----
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: jaeger-gateway
-  namespace: istio-system
-spec:
-  selector:
-    istio: gateway
-  servers:
-    - port:
-        number: 80
-        name: http-jaeger
-        protocol: HTTP
-      hosts:
-        - "jaeger.meraki-mv-rekognition.aws.outscope.com"
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: jaeger-vs
-  namespace: istio-system
-spec:
-  hosts:
-    - "jaeger.meraki-mv-rekognition.aws.outscope.com"
-  gateways:
-    - jaeger-gateway
-  http:
-    - route:
+    - match:
+        - headers:
+            host: jaeger.meraki-mv-rekognition.aws.outscope.com
+      route:
         - destination:
             host: tracing
             port:
               number: 80
+#---
+#apiVersion: networking.istio.io/v1alpha3
+#kind: Gateway
+#metadata:
+#  name: grafana-gateway
+#  namespace: istio-system
+#spec:
+#  selector:
+#    istio: gateway
+#  servers:
+#    - port:
+#        number: 80
+#        name: http-grafana
+#        protocol: HTTP
+#      hosts:
+#        - "grafana.meraki-mv-rekognition.aws.outscope.com"
+#---
+#apiVersion: networking.istio.io/v1alpha3
+#kind: VirtualService
+#metadata:
+#  name: grafana-vs
+#  namespace: istio-system
+#spec:
+#  hosts:
+#    - "grafana.meraki-mv-rekognition.aws.outscope.com"
+#  gateways:
+#    - grafana-gateway
+#  http:
+#    - route:
+#        - destination:
+#            host: grafana
+#            port:
+#              number: 3000
+#---
+#apiVersion: networking.istio.io/v1alpha3
+#kind: Gateway
+#metadata:
+#  name: kiali-gateway
+#  namespace: istio-system
+#spec:
+#  selector:
+#    istio: gateway
+#  servers:
+#    - port:
+#        number: 80
+#        name: http-kiali
+#        protocol: HTTP
+#      hosts:
+#        - "kiali.meraki-mv-rekognition.aws.outscope.com"
+#---
+#apiVersion: networking.istio.io/v1alpha3
+#kind: VirtualService
+#metadata:
+#  name: kiali-vs
+#  namespace: istio-system
+#spec:
+#  hosts:
+#    - "kiali.meraki-mv-rekognition.aws.outscope.com"
+#  gateways:
+#    - kiali-gateway
+#  http:
+#    - route:
+#        - destination:
+#            host: kiali
+#            port:
+#              number: 20001
+#---
+#apiVersion: networking.istio.io/v1alpha3
+#kind: Gateway
+#metadata:
+#  name: jaeger-gateway
+#  namespace: istio-system
+#spec:
+#  selector:
+#    istio: gateway
+#  servers:
+#    - port:
+#        number: 80
+#        name: http-jaeger
+#        protocol: HTTP
+#      hosts:
+#        - "jaeger.meraki-mv-rekognition.aws.outscope.com"
+#---
+#apiVersion: networking.istio.io/v1alpha3
+#kind: VirtualService
+#metadata:
+#  name: jaeger-vs
+#  namespace: istio-system
+#spec:
+#  hosts:
+#    - "jaeger.meraki-mv-rekognition.aws.outscope.com"
+#  gateways:
+#    - jaeger-gateway
+#  http:
+#    - route:
+#        - destination:
+#            host: tracing
+#            port:
+#              number: 80
