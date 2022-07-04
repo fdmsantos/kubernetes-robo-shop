@@ -36,7 +36,7 @@ metadata:
     alb.ingress.kubernetes.io/target-type: instance
     alb.ingress.kubernetes.io/backend-protocol: HTTP
     alb.ingress.kubernetes.io/healthcheck-path: /healthz/ready
-    alb.ingress.kubernetes.io/healthcheck-port: "32001"
+    alb.ingress.kubernetes.io/healthcheck-port: "traffic-port"
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
     alb.ingress.kubernetes.io/certificate-arn: "${acm_certificate_arn}"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
@@ -76,7 +76,7 @@ spec:
         name: robot-http
         protocol: HTTP
       hosts:
-        - "roboshop.meraki-mv-rekognition.aws.outscope.com"
+        - "*"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -85,10 +85,18 @@ metadata:
   namespace: robot-shop
 spec:
   hosts:
-    - "roboshop.meraki-mv-rekognition.aws.outscope.com"
+    - "*"
   gateways:
     - robot-gateway
   http:
+    - match:
+        - uri:
+          exact: /healthz/ready
+      route:
+        - destination:
+            host: robot-gateway
+            port:
+              number: 15021
     - route:
         - destination:
             host: web
