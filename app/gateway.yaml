@@ -91,7 +91,7 @@ spec:
   http:
     - match:
         - uri:
-          exact: /healthz/ready
+           exact: /healthz/ready
       route:
         - destination:
             host: robot-gateway
