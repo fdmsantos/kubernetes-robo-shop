@@ -103,7 +103,8 @@ spec:
               number: 15021
     - match:
         - headers:
-            host: grafana.meraki-mv-rekognition.aws.outscope.com
+            host:
+              exact: grafana.meraki-mv-rekognition.aws.outscope.com
       route:
         - destination:
             host: grafana
@@ -111,7 +112,8 @@ spec:
               number: 3000
     - match:
         - headers:
-            host: kiali.meraki-mv-rekognition.aws.outscope.com
+            host:
+              exact: kiali.meraki-mv-rekognition.aws.outscope.com
       route:
         - destination:
             host: kiali
@@ -119,7 +121,8 @@ spec:
               number: 20001
     - match:
         - headers:
-            host: jaeger.meraki-mv-rekognition.aws.outscope.com
+            host:
+              exact: jaeger.meraki-mv-rekognition.aws.outscope.com
       route:
         - destination:
             host: tracing
