@@ -1,5 +1,10 @@
-cd clusters
+export AWS_REGION=eu-west-1
+cd clusters/es-proxy
+# Run Packer
+packer init es-proxy.pkr.hcl
+AWS_PROFILE=outscope-tests packer build es-proxy.pkr.hcl
 # Deploy EKS cluster
+cd ..
 terraform init
 AWS_PROFILE=outscope-tests terraform apply --auto-approve
 # Configure Kubectl

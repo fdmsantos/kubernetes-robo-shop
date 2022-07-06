@@ -45,9 +45,3 @@ provider "kubectl" {
   }
   load_config_file = false
 }
-
-#provider "helm" {
-#  kubernetes {
-#    config_path = "~/.kube/config"
-#  }
-#}

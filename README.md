@@ -4,14 +4,22 @@ Repo for Kubernetes/AWS Training
 ## Main components
 
 * Kubernetes Cluster: [EKS](https://aws.amazon.com/eks/)
-* Deployment: [Terraform](https://www.terraform.io/)
+* Deployment: 
+  * [Terraform](https://www.terraform.io/)
+  * [Packer](https://www.packer.io/)
 * GitOps: [Flux](https://fluxcd.io/docs/get-started/)
 * [Robot Shop App](https://github.com/instana/robot-shop)
 * Service Mesh: [Istio](https://istio.io/)
+  * [Kiali](https://kiali.io/)
+  * [Jaeger](https://www.jaegertracing.io/)
+  * [Grafana](https://grafana.com/)
+  * [Prometheus](https://prometheus.io/)
 * AWS AddOns
   * [AWS Route53 External DNS](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md) 
   * [AWS Load Balancer Controller](https://github.com/kubernetes-sigs/aws-load-balancer-controller)
   * [AWS Cluster Autoscaler](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md)
+* Amazon OpenSearch
+  * With Nginx Proxy to access OpenSearch Dashboards
 
 ## Usage
 
@@ -38,7 +46,35 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
 
 ## WIP
 
+* Service Mesh
+  * istio Flagger => Deloyment
+    * https://ruzickap.github.io/k8s-flagger-istio-flux/
+    * https://github.com/stefanprodan/gitops-istio/blob/main/istio/system/flagger.yaml
+  * Traffic Mirroring
+  * Canary Deployments vs blue green in istio
+    * https://fluxcd.io/flagger/tutorials/istio-progressive-delivery/
+* Monitoring
+  * FluentD 
+  * Logs
+  * ElasticSearch
+  * Alerting (Nagios)
 * Observability
+  * SLOS, SLAS, SLI
+  * Tracing (XRAY?)
+  * Prometheus???
+  * Grafana
+* Scaling
+  * HPA to deployments
+  * Metrics Server
+  * Auto Scaling based in custom Metrics (Dispatch service based in rabbitmq messages)
+  * Knative
+* Chaos Engineering
+* Move Cluster Nodes to private subnets
+  * Create Fargate Profile (It's necessary private subnets)
+  * Istio ALB should be internal
+  * Move Elasticsearch too
+* Fix Application
+  * Implement Circuit breaking??
 * Data Analytics
   * Redshift
     * Several Users different access
@@ -55,13 +91,9 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
 * Sentiment Analysis in Robo Comments
 * Robo Recommend system based in Country?
 * Pen testing
-* Monitoring
-  * Logs
-  * ElasticSearch
 * Web Deployment
   * WAF (via ACK)
   * Cloudfront (Via ACK)
-  * Change service to Loadbalancer type
 * Redis 
   * is SatefulSet
   * Create Several Replicas and Replicate?
@@ -81,26 +113,10 @@ kubectl run troubleshooting --image=praqma/network-multitool -i --tty -- sh
   * Client to Site
   * Transit Gateway
   * Give Access to Rabbit MQ Management Portal
-* Scaling
-  * HPA to deployments
-  * Auto Scaling based in custom Metrics (Dispatch service based in rabbitmq messages)
-  * Knative
-* Move Cluster Nodes to private subnets
-* Observability
-  * SLOS, SLAS, SLI
-  * Tracing (XRAY?)
-  * Prometheus???
-  * Grafana
-* Monitoring
 * DevOps Pipelines
-* Service Mesh
-    * istio Flagger
-      * https://ruzickap.github.io/k8s-flagger-istio-flux/
-      * https://github.com/stefanprodan/gitops-istio/blob/main/istio/system/flagger.yaml
-  * Traffic Mirroring
-  * Canary Deployments vs blue green in istio
-    * https://fluxcd.io/flagger/tutorials/istio-progressive-delivery/
-* Chaos Engineering
+  * [Skaffold](https://skaffold.dev/)
+* Authentication
+  * Integrate SAML (OpenSearch)
 
 ## Study
 

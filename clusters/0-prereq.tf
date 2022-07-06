@@ -4,6 +4,10 @@ data "aws_route53_zone" "this" {
   name = var.domain
 }
 
+data "http" "myip" {
+  url = "http://ipv4.icanhazip.com"
+}
+
 # =========================== GIT ==============================
 data "github_repository" "main" {
   name = var.git_repository_name

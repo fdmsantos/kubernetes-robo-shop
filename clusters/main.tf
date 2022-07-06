@@ -41,9 +41,8 @@ module "eks" {
 
   //  # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
-    disk_size = 50
-    #    instance_types = ["t3.xlarge"]
-    instance_types = ["t3.small"]
+    disk_size      = 50
+    instance_types = ["t3.xlarge"]
     #    key_name        = aws_key_pair.this.key_name
   }
 
@@ -66,7 +65,7 @@ module "eks" {
       max_size     = 10
       desired_size = 1
 
-      instance_types = ["t3.small"]
+      instance_types = ["t3.xlarge"]
       capacity_type  = "ON_DEMAND"
     }
   }
