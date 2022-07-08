@@ -71,6 +71,7 @@ resource "kubernetes_config_map" "flux-vars" {
     iam_elbcontroller_role_arn     = module.loadbalancer_role.iam_role_arn
     iam_clusterautoscaler_role_arn = module.cluster_autoscaler_role.iam_role_arn
     iam_externaldns_role_arn       = module.external_dns_route53_role.iam_role_arn
+    elasticsearch_host             = var.enable_elasticsearch ? module.elasticsearch[0].domain_hostname : null
   }
 }
 # ==================================================================
