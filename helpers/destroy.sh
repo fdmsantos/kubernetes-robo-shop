@@ -1,4 +1,5 @@
 flux delete -s kustomization apps
+flux delete -s kustomization fluentd-controller
 flux delete -s kustomization ingress-infrastructure
 flux delete -s kustomization istio-infrastructure
 flux delete -s kustomization aws-elb-controller
